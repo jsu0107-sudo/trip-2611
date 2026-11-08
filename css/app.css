@@ -14,7 +14,7 @@
   --ink:#111114; --ink-2:#55555C; --ink-3:#6B6B72;
   --accent:#E8641C; --accent-ink:#B8420C; --accent-fill:#CC4A0A; --on-accent:#FFFFFF; --accent-tint:#FDEDE1;
   --route:#0A72D6; --route-tint:#E3EFFC; --past:#A3A3AB;
-  --k-flight:#0071E3; --k-flight-bg:#E2EFFF; --k-stay:#A447D6; --k-stay-bg:#F3E7FA; --k-food:#D46A00; --k-food-bg:#FFEFDB;
+  --k-flight:#0071E3; --k-flight-bg:#E2EFFF; --k-stay:#A447D6; --k-stay-bg:#F3E7FA; --k-food:#D46A00; --k-food-bg:#FFEFDB; --k-food-ink:#9E4F00;
   --k-sight:#E5284E; --k-sight-bg:#FFE5EB; --k-beach:#008BA3; --k-beach-bg:#DCF3F7; --k-shop:#B07900; --k-shop-bg:#FFF3D3;
   --k-tour:#1E8E3E; --k-tour-bg:#E1F5E6; --k-rest:#5856D6; --k-rest-bg:#EBEBFB; --k-cafe:#9A5B27; --k-cafe-bg:#F4E9DE;
   --k-move:#5B6878; --k-move-bg:#EAEEF2; --k-info:#62626A; --k-info-bg:#EDEDF2; --k-sun:#D86E00; --k-sun-bg:#FFEFD9;
@@ -41,7 +41,7 @@
     --ink:#F5F5F7; --ink-2:#AEAEB2; --ink-3:#98989D;
     --accent:#FF8A3D; --accent-ink:#FF9F5C; --accent-fill:#FF8A3D; --on-accent:#1A0B00; --accent-tint:#3A1F0E;
     --route:#4DA3FF; --route-tint:#0E2740; --past:#5E5E63;
-    --k-flight:#4DA3FF; --k-flight-bg:#10263F; --k-stay:#D08BFF; --k-stay-bg:#2E1A3A; --k-food:#FFA53D; --k-food-bg:#3A2410;
+    --k-flight:#4DA3FF; --k-flight-bg:#10263F; --k-stay:#D08BFF; --k-stay-bg:#2E1A3A; --k-food:#FFA53D; --k-food-bg:#3A2410; --k-food-ink:#FFA53D;
     --k-sight:#FF6B8A; --k-sight-bg:#3D1620; --k-beach:#4CD3EA; --k-beach-bg:#0E2E35; --k-shop:#FFD24D; --k-shop-bg:#3A300F;
     --k-tour:#5AD47A; --k-tour-bg:#123020; --k-rest:#9D9BFF; --k-rest-bg:#1E1E40; --k-cafe:#D9A06A; --k-cafe-bg:#33251A;
     --k-move:#A7B3C2; --k-move-bg:#22272E; --k-info:#AEAEB2; --k-info-bg:#2C2C2E; --k-sun:#FFB347; --k-sun-bg:#3A2A10;
@@ -59,7 +59,7 @@
   --ink:#F5F5F7; --ink-2:#AEAEB2; --ink-3:#98989D;
   --accent:#FF8A3D; --accent-ink:#FF9F5C; --accent-fill:#FF8A3D; --on-accent:#1A0B00; --accent-tint:#3A1F0E;
   --route:#4DA3FF; --route-tint:#0E2740; --past:#5E5E63;
-  --k-flight:#4DA3FF; --k-flight-bg:#10263F; --k-stay:#D08BFF; --k-stay-bg:#2E1A3A; --k-food:#FFA53D; --k-food-bg:#3A2410;
+  --k-flight:#4DA3FF; --k-flight-bg:#10263F; --k-stay:#D08BFF; --k-stay-bg:#2E1A3A; --k-food:#FFA53D; --k-food-bg:#3A2410; --k-food-ink:#FFA53D;
   --k-sight:#FF6B8A; --k-sight-bg:#3D1620; --k-beach:#4CD3EA; --k-beach-bg:#0E2E35; --k-shop:#FFD24D; --k-shop-bg:#3A300F;
   --k-tour:#5AD47A; --k-tour-bg:#123020; --k-rest:#9D9BFF; --k-rest-bg:#1E1E40; --k-cafe:#D9A06A; --k-cafe-bg:#33251A;
   --k-move:#A7B3C2; --k-move-bg:#22272E; --k-info:#AEAEB2; --k-info-bg:#2C2C2E; --k-sun:#FFB347; --k-sun-bg:#3A2A10;
@@ -70,17 +70,17 @@
   --lift:0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.4);
   color-scheme:dark;
 }
-/* 종류 색: 아이콘 글자색(--kc)과 옅은 바탕(--kb) */
-.k-flight{ --kc:var(--k-flight); --kb:var(--k-flight-bg) }
-.k-stay{ --kc:var(--k-stay); --kb:var(--k-stay-bg) }
-.k-food{ --kc:var(--k-food); --kb:var(--k-food-bg) }
-.k-sight{ --kc:var(--k-sight); --kb:var(--k-sight-bg) }
-.k-beach{ --kc:var(--k-beach); --kb:var(--k-beach-bg) }
-.k-shop{ --kc:var(--k-shop); --kb:var(--k-shop-bg) }
-.k-tour{ --kc:var(--k-tour); --kb:var(--k-tour-bg) }
-.k-rest{ --kc:var(--k-rest); --kb:var(--k-rest-bg) }
-.k-cafe{ --kc:var(--k-cafe); --kb:var(--k-cafe-bg) }
-.k-move{ --kc:var(--k-move); --kb:var(--k-move-bg) }
+/* 종류 색: 아이콘 글자색(--kc), 옅은 바탕(--kb), 흰 숫자를 얹는 진한 색(--kd, 흰 글자 4.8:1 이상, 밝기 모드와 상관없이) */
+.k-flight{ --kc:var(--k-flight); --kb:var(--k-flight-bg); --kd:#0062C4 }
+.k-stay{ --kc:var(--k-stay); --kb:var(--k-stay-bg); --kd:#8E36C0 }
+.k-food{ --kc:var(--k-food); --kb:var(--k-food-bg); --kd:#B35A00 }
+.k-sight{ --kc:var(--k-sight); --kb:var(--k-sight-bg); --kd:#C8213F }
+.k-beach{ --kc:var(--k-beach); --kb:var(--k-beach-bg); --kd:#00788D }
+.k-shop{ --kc:var(--k-shop); --kb:var(--k-shop-bg); --kd:#8F6200 }
+.k-tour{ --kc:var(--k-tour); --kb:var(--k-tour-bg); --kd:#1A7A35 }
+.k-rest{ --kc:var(--k-rest); --kb:var(--k-rest-bg); --kd:#4B49C8 }
+.k-cafe{ --kc:var(--k-cafe); --kb:var(--k-cafe-bg); --kd:#8A5122 }
+.k-move{ --kc:var(--k-move); --kb:var(--k-move-bg); --kd:#4F5A68 }
 .k-info{ --kc:var(--k-info); --kb:var(--k-info-bg) }
 .k-sun{ --kc:var(--k-sun); --kb:var(--k-sun-bg) }
 
@@ -102,8 +102,13 @@ svg{ flex:none }
 .gl{ width:20px; height:20px; fill:currentColor; flex:none }
 .gl.sm{ width:16px; height:16px }
 .g-plane{ transform:rotate(45deg) }
-.bub{ display:grid; place-items:center; width:36px; height:36px; border-radius:50%; background:var(--kb); color:var(--kc); flex:none }
+.bub{ position:relative; display:grid; place-items:center; width:36px; height:36px; border-radius:50%; background:var(--kb); color:var(--kc); flex:none }
 .bub .gl{ width:19px; height:19px }
+/* 지도 핀과 같은 번호: 아이콘 오른쪽 위의 작은 표 */
+.pno{ position:absolute; top:-5px; right:-7px; min-width:20px; height:20px; padding:0 4px; border:2px solid var(--surface); border-radius:10px; background:var(--kd); color:#fff; font:800 12px/16px var(--font); font-style:normal; text-align:center; font-variant-numeric:tabular-nums }
+/* 걷는 길의 우버 대안 */
+.ualt{ display:inline-flex; align-items:center; gap:4px; font-size:14px; font-weight:650; color:var(--ink-2); white-space:nowrap; font-variant-numeric:tabular-nums }
+.ualt .gl{ color:var(--k-move) }
 
 /* 버튼: 주황 채움은 화면의 주 동작, 나머지는 회색 채움. 모서리는 알약 모양 */
 .btn{ display:inline-flex; align-items:center; justify-content:center; gap:6px; min-height:44px; padding:0 18px; border:0; border-radius:var(--r-pill); font-size:15px; font-weight:650; line-height:1.2; text-decoration:none; transition:transform var(--t-out) var(--ease), background-color var(--t-out) var(--ease) }
@@ -198,12 +203,12 @@ svg{ flex:none }
 .leaflet-marker-icon.pin-wrap.leaflet-interactive{ pointer-events:none }
 .pin-wrap .pin{ pointer-events:auto; cursor:pointer }
 /* 지도 핀: 번호 핀은 그곳에서 하는 일의 종류 색, 흰 테두리로 지도에서 떼어 낸다 */
-.pin{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); display:grid; place-items:center; border-radius:50%; font-weight:800; font-variant-numeric:tabular-nums; color:#fff; background:var(--kc, var(--ink)); border:2px solid #fff; transition:transform var(--t-out) var(--ease) }
+.pin{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); display:grid; place-items:center; border-radius:50%; font-weight:800; font-variant-numeric:tabular-nums; color:#fff; background:var(--kd, var(--ink)); border:2px solid #fff; transition:transform var(--t-out) var(--ease) }
 .pin.num{ width:28px; height:28px; font-size:13px }
 .pin.num.multi{ width:auto; min-width:28px; padding:0 7px; border-radius:14px; white-space:nowrap; letter-spacing:-.01em }
 .pin.city{ width:20px; height:20px; border-width:3px; background:var(--ink) }
 .pin.stay{ width:20px; height:20px; background:#fff; border:5px solid var(--kc) }
-.pin.cafe{ width:26px; height:26px; background:#fff; color:var(--k-cafe); border:1.5px solid var(--k-cafe) }
+.pin.cafe{ width:26px; height:26px; background:#fff; color:var(--kd); border:1.5px solid var(--kd) }   /* 카페 컵·맛집 포크: 흰 바탕 위 진한 색(밝기 모드와 상관없이 4.8:1 이상) */
 .pin.cafe svg{ width:14px; height:14px; fill:currentColor }
 .pin-wrap.is-on .pin{ transform:translate(-50%,-50%) scale(1.18); outline:3px solid var(--accent); outline-offset:1px }
 .pin-wrap.is-dim{ opacity:.5 }
@@ -382,6 +387,18 @@ details[open] > .sum .chev{ transform:rotate(180deg) }
 .row.ev .links .btn-line:active{ background:var(--active) }
 @media (hover:hover) and (pointer:fine){ .row.ev .links .btn-line:hover{ background:var(--raised) } }
 .row.ev .links{ margin-top:2px }
+.row.ev .links .btn-line + .btn-line{ margin-left:0 }
+/* 예약 정보: 번호(누르면 복사), 예약 이름, 전화. 일정 줄과 예약 탭이 같이 쓴다 */
+.bk{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px }
+.bk-c{ display:inline-flex; align-items:center; gap:6px; min-height:36px; padding:0 10px; border-radius:10px; background:var(--fill); color:var(--ink); font-size:14px; line-height:1.3; text-decoration:none; transition:background-color var(--t-out) var(--ease) }
+.bk-c .k{ font-size:13px; font-weight:600; color:var(--ink-2) }
+.bk-c b{ font-weight:700; font-variant-numeric:tabular-nums }
+.bk-c .ico{ width:15px; height:15px; color:var(--ink-3) }
+button.bk-c:active, a.bk-c:active{ background:var(--active) }
+@media (hover:hover) and (pointer:fine){ button.bk-c:hover, a.bk-c:hover{ background:var(--active) } }
+.bk-c.act, .bk-c.act .ico, .bk-c.done .k, .bk-c.done .ico{ color:var(--accent-ink) }
+.lmeta{ grid-column:2 / -1; margin-top:-6px; padding-bottom:12px }
+.lmeta .bk{ margin-top:0 }
 .more{ padding:10px 0 4px; display:grid; grid-template-columns:minmax(0,1fr); gap:6px; font-size:14.5px; color:var(--ink-2) }
 .more .alt b{ color:var(--ink); margin-right:6px }
 .more .meas{ font-size:14px; color:var(--ink-2); font-variant-numeric:tabular-nums }
@@ -390,6 +407,7 @@ details[open] > .sum .chev{ transform:rotate(180deg) }
 .cf-item:first-child{ border-top:0; padding-top:4px }
 .cf-item h4{ display:flex; flex-wrap:wrap; align-items:center; gap:4px 8px; font-size:16px; font-weight:700; color:var(--ink) }
 .cf-tag{ display:inline-block; padding:0 8px; border-radius:var(--r-pill); font-size:13px; font-weight:650; line-height:1.7; color:var(--k-cafe); background:var(--k-cafe-bg) }
+.cf-tag.k-food{ color:var(--k-food-ink); background:var(--k-food-bg) }
 .cf-meta{ font-size:14.5px; color:var(--ink-2) }
 .cf-get b{ color:var(--ink); margin-right:6px }
 

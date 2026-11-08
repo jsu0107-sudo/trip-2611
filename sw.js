@@ -5,11 +5,11 @@
      그때 붙는 ?ofmpre=1 요청은 여기서 저장하지 않고 그대로 넘겨요(같은 조각을 두 번 저장하지 않게).
    - 지도 글자(fonts)와 아이콘 그림(sprites)은 몇 개 안 되니 지우지 않는 곳에 둬요. 지도 조각에 밀려 지워지면 지명이 안 보여서예요.
    - 지도 스타일과 타일 목록(TileJSON)은 인터넷이 되면 새로 받고, 안 되면 미리 받은 판을 먼저 써요(그 판의 조각 주소와 맞으니까). */
-const VER = 'v2-202611082111';
+const VER = 'v2-202611082139';
 const SHELL = 'shell-' + VER, MAP = 'map-v1', PRE = 'map-pre-v1', STILL = 'map-still-v1', FONTS = 'fonts-v1';
 const FILES = ['./', 'index.html', 'css/app.css', 'vendor/leaflet.css', 'vendor/leaflet.js', 'vendor/maplibre-gl.css', 'vendor/maplibre-gl.js', 'vendor/leaflet-maplibre-gl.js',
   'js/coast.js',
-  'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
+  'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'img/heart-reef.jpg'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(SHELL).then((c) => c.addAll(FILES)).then(() => self.skipWaiting()));

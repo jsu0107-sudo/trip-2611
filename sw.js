@@ -2,7 +2,7 @@
    - 화면 파일(앱 껍데기)은 설치할 때 받아 두고, 인터넷이 되면 새 판을 받아 바꿔요.
    - 지도 조각·글꼴은 한 번 본 것을 남겨 두고 다시 써요(지도 조각은 최대 900개).
    - 지도 스타일과 타일 목록(TileJSON)은 인터넷이 되면 새로 받고, 안 되면 남은 것을 써요. */
-const VER = 'v2-202611081428';
+const VER = 'v2-202611082032';
 const SHELL = 'shell-' + VER, MAP = 'map-v1', FONTS = 'fonts-v1';
 const FILES = ['./', 'index.html', 'css/app.css', 'vendor/leaflet.css', 'vendor/leaflet.js', 'vendor/maplibre-gl.css', 'vendor/maplibre-gl.js', 'vendor/leaflet-maplibre-gl.js',
   'js/coast.js',

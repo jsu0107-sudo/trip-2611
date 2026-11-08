@@ -11,7 +11,7 @@
 :root{
   --ground:#F2F4F3; --surface:#FFFFFF; --raised:#ECEFEE; --active:#E3E7E6;
   --border:#E0E4E3; --rule:#ECEFEE; --control:#C9CFCE;
-  --ink:#0E1113; --ink-2:#4D5558; --ink-3:#646C70;
+  --ink:#0E1113; --ink-2:#4D5558; --ink-3:#596165;
   --route:#0B65B0; --route-tint:#E3EEF8; --past:#9AA2A6;
   --hti:#DDEFEA; --syd:#ECE7DE; --kst:#E7EAEE;
   --warn-bg:#FFFBEB; --warn-line:#FDE68A; --warn-ink:#92400E;
@@ -95,7 +95,7 @@ svg{ flex:none }
 .brand{ flex:0 0 auto; display:flex; align-items:center; gap:8px; min-width:0 }
 .brand .mark{ width:26px; height:26px; flex:none }
 .brand h1{ font:700 19px/1.2 var(--serif); letter-spacing:-.01em; white-space:nowrap }
-.status{ position:relative; flex:0 1 auto; margin-left:auto; min-width:0; display:inline-flex; align-items:center; gap:7px; min-height:34px; padding:0 11px 0 10px; border:1px solid var(--border); border-radius:var(--r-ctl); background:var(--surface); font-size:13.5px; font-weight:600; color:var(--ink); white-space:nowrap }
+.status{ position:relative; flex:0 1 auto; margin-left:auto; min-width:0; display:inline-flex; align-items:center; gap:7px; min-height:36px; padding:0 12px 0 10px; border:1px solid var(--border); border-radius:var(--r-ctl); background:var(--surface); font-size:14px; font-weight:600; color:var(--ink); white-space:nowrap }
 .status::after{ content:""; position:absolute; inset:-5px 0 }
 .status .tx{ min-width:0; overflow:hidden; text-overflow:ellipsis; font-variant-numeric:tabular-nums }
 .status i{ width:8px; height:8px; border-radius:50%; background:var(--ink-3); flex:none }
@@ -111,7 +111,7 @@ svg{ flex:none }
 .days, .lane{ display:grid; grid-template-columns:1.12fr repeat(9, minmax(0,1fr)); column-gap:2px }
 .days{ height:48px }
 .day-chip{ position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; min-width:0; border-radius:var(--r-ctl); transition:background-color var(--t-out) var(--ease) }
-.day-chip .w{ font-size:11.5px; line-height:1.3; color:var(--ink-3); font-weight:500 }
+.day-chip .w{ font-size:12.5px; line-height:1.3; color:var(--ink-2); font-weight:600 }
 .day-chip .d{ font-size:17px; line-height:1.25; font-weight:700; color:var(--ink); font-variant-numeric:tabular-nums }
 .day-chip.all .d{ font-size:14px; letter-spacing:-.01em }
 .day-chip.past .d{ color:var(--ink-3); font-weight:600 }
@@ -122,7 +122,7 @@ svg{ flex:none }
 .day-chip[aria-selected="true"].today::after{ background:var(--surface) }
 @media (hover:hover) and (pointer:fine){ .day-chip:not([aria-selected="true"]):hover{ background:var(--raised) } }
 .lane{ height:20px; margin-top:2px }
-.lane .seg{ grid-row:1; display:flex; align-items:center; justify-content:center; gap:3px; min-width:0; height:20px; padding:0 3px; border-radius:4px; background:var(--tint, var(--kst)); color:var(--ink); font-size:11.5px; font-weight:600; line-height:1; white-space:nowrap; overflow:hidden }
+.lane .seg{ grid-row:1; display:flex; align-items:center; justify-content:center; gap:3px; min-width:0; height:20px; padding:0 3px; border-radius:4px; background:var(--tint, var(--kst)); color:var(--ink); font-size:12px; font-weight:600; line-height:1; white-space:nowrap; overflow:hidden }
 .lane .seg span{ overflow:hidden; text-overflow:clip }
 .lane .seg svg{ width:11px; height:11px; fill:currentColor; transform:rotate(90deg); flex:none }
 .lane .seg.sel{ outline:1.5px solid var(--ink); outline-offset:-1.5px }
@@ -135,6 +135,7 @@ svg{ flex:none }
 #map{ position:absolute; inset:0; z-index:0; background:var(--land); font-family:var(--font) }
 .map-ui{ position:absolute; inset:0; pointer-events:none; z-index:1 }
 .map-ui > *{ pointer-events:auto }
+/* 지도 버튼: 넓은 화면은 오른쪽 위, 휴대폰은 엄지가 닿게 오른쪽 아래에 모은다(아래 휴대폰 규칙) */
 .ctl{ position:absolute; top:10px; right:max(10px, var(--safe-r)); display:grid; gap:8px }
 @media (max-width: 999.98px), (pointer:coarse){ .ctl .zoom{ display:none } }
 /* 지도 위 버튼: 그림자 없이 흰 바탕과 테두리로만 지도에서 떼어 낸다 */
@@ -144,20 +145,19 @@ svg{ flex:none }
 .scenes{ position:absolute; top:10px; left:max(10px, var(--safe-l)); display:flex; align-items:center; gap:2px; padding:3px; border:1px solid var(--control); border-radius:var(--r-card); background:var(--surface) }
 .scenes button{ min-height:40px; padding:0 13px; border-radius:var(--r-ctl); font-size:14px; font-weight:600; color:var(--ink-2) }
 .scenes button[aria-selected="true"]{ background:var(--ink); color:var(--surface) }
-.scenes .fl{ display:inline-flex; align-items:center; gap:3px; padding:0 4px; font-size:12px; color:var(--ink-3); font-variant-numeric:tabular-nums }
+.scenes .fl{ display:inline-flex; align-items:center; gap:3px; padding:0 4px; font-size:13px; color:var(--ink-2); font-variant-numeric:tabular-nums }
 .scenes .fl svg{ width:13px; height:13px; fill:currentColor; transform:rotate(90deg) }
 .stepper{ position:absolute; left:max(10px, var(--safe-l)); bottom:22px; max-width:calc(100% - 84px); display:flex; align-items:center; gap:2px; padding:3px; border:1px solid var(--control); border-radius:var(--r-card); background:var(--surface) }
 .stepper .nav{ width:44px; height:44px; display:grid; place-items:center; border-radius:var(--r-ctl); flex:none; transition:background-color var(--t-out) var(--ease) }
 .stepper .nav:active{ background:var(--active) }
 @media (hover:hover) and (pointer:fine){ .stepper .nav:hover{ background:var(--raised) } }
-.stepper .k{ font-size:13px; font-weight:700; font-variant-numeric:tabular-nums; min-width:2.4em; text-align:center; flex:none }
-.stepper .lbl{ min-width:0; padding:0 6px 0 4px; font-size:13.5px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.stepper .k{ font-size:13.5px; font-weight:700; font-variant-numeric:tabular-nums; min-width:2.4em; text-align:center; flex:none }
+.stepper .lbl{ min-width:0; padding:0 6px 0 4px; font-size:14px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
 .stepper .go{ min-height:44px; padding:0 14px 0 12px; border-radius:var(--r-ctl); display:inline-flex; align-items:center; gap:7px; font-size:14px; font-weight:700; color:var(--ink); transition:transform var(--t-out) var(--ease), background-color var(--t-out) var(--ease) }
 .stepper .go .ico{ color:var(--route) }
 .stepper .go:active{ transform:scale(.97); background:var(--active); transition-duration:var(--t-press) }
 @media (hover:hover) and (pointer:fine){ .stepper .go:hover{ background:var(--raised) } }
-.size-btn{ position:absolute; right:max(10px, var(--safe-r)); bottom:22px }
-.notice{ position:absolute; left:max(10px, var(--safe-l)); top:10px; max-width:calc(100% - 84px); padding:8px 12px; border-radius:var(--r-card); background:var(--ink); color:var(--surface); font-size:13px; font-weight:600; line-height:1.4 }
+.notice{ position:absolute; left:max(10px, var(--safe-l)); top:10px; max-width:calc(100% - 84px); padding:8px 12px; border-radius:var(--r-card); background:var(--ink); color:var(--surface); font-size:14px; font-weight:600; line-height:1.4 }
 .scenes:not([hidden]) ~ .notice{ top:62px }
 
 /* Leaflet 꾸미기 */
@@ -229,27 +229,27 @@ path.land{ fill:var(--land); stroke:var(--coast); stroke-width:1 }
 /* ───── 아래 시트 ───── */
 .sheet{ position:relative; z-index:10; padding:20px max(16px, var(--safe-r)) calc(var(--tabs-h) + var(--nb-space) + 40px + var(--safe-b)) max(16px, var(--safe-l)) }
 .day-head{ display:grid; grid-template-columns:minmax(0,1fr); gap:4px }
-.day-no{ font-size:13.5px; font-weight:600; color:var(--ink-2); font-variant-numeric:tabular-nums }
+.day-no{ font-size:14.5px; font-weight:600; color:var(--ink-2); font-variant-numeric:tabular-nums }
 .day-title{ font:700 24px/1.3 var(--serif); letter-spacing:-.015em; text-wrap:balance }
 .tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px }
-.tag{ display:inline-flex; align-items:center; min-height:26px; padding:0 9px; border-radius:var(--r-ctl); font-size:13px; font-weight:600; background:var(--tint, var(--raised)); color:var(--ink); white-space:nowrap }
+.tag{ display:inline-flex; align-items:center; min-height:28px; padding:0 9px; border-radius:var(--r-ctl); font-size:14px; font-weight:600; background:var(--tint, var(--raised)); color:var(--ink); white-space:nowrap }
 .tag.plain{ background:transparent; color:var(--ink-2); border:1px solid var(--border); font-weight:500 }
-.callout{ margin-top:14px; padding:12px 14px; border-radius:var(--r-card); background:var(--warn-bg); border:1px solid var(--warn-line); color:var(--ink); font-size:14.5px; display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px }
+.callout{ margin-top:14px; padding:12px 14px; border-radius:var(--r-card); background:var(--warn-bg); border:1px solid var(--warn-line); color:var(--ink); font-size:15px; display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px }
 .callout .ico{ color:var(--warn-ink); margin-top:2px }
-.callout b{ display:block; color:var(--warn-ink); font-size:13.5px }
+.callout b{ display:block; color:var(--warn-ink); font-size:14px }
 
 /* 다음 막대: 여행 중엔 어느 화면에서나 아래 탭 바로 위에 떠 있어요(한 손 엄지가 닿는 자리).
    윗줄은 무엇을 언제, 아랫줄은 어떻게 가는지와 누를 버튼 하나. 막대 아무 데나 누르면 그 일정이 펼쳐져요 */
 .nowbar{ position:fixed; z-index:44; left:max(8px, var(--safe-l)); right:max(8px, var(--safe-r)); bottom:calc(var(--tabs-h) + var(--safe-b) + 8px); display:grid; grid-template-columns:minmax(0,1fr); row-gap:4px; padding:9px 10px 9px 12px; border:1px solid var(--border); border-radius:var(--r-card); background:var(--surface); box-shadow:var(--lift) }
 .nb-l1{ display:flex; align-items:baseline; gap:8px; min-width:0 }
-.nb-k{ flex:none; font-size:13px; font-weight:700; color:var(--route) }
+.nb-k{ flex:none; font-size:14px; font-weight:700; color:var(--route) }
 .nb-t{ flex:1 1 auto; min-width:0; text-align:left; font-size:16px; font-weight:700; line-height:1.4; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
 .nb-t b{ font-weight:700; font-variant-numeric:tabular-nums }
 .nb-t::after{ content:""; position:absolute; inset:0; border-radius:var(--r-card); transition:background-color var(--t-out) var(--ease) }
 .nb-t:active::after{ background:color-mix(in srgb, var(--ink) 7%, transparent) }
 .nb-t:focus-visible{ outline:none }
 .nb-t:focus-visible::after{ outline:2.5px solid var(--ink); outline-offset:2px }
-.nb-rel{ flex:none; font-size:13.5px; font-weight:600; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap }
+.nb-rel{ flex:none; font-size:14px; font-weight:600; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap }
 .nb-l2{ display:flex; align-items:center; gap:8px; min-width:0; min-height:40px }
 .nb-l2.txt{ min-height:0 }
 .nb-l2 .mode{ margin-right:0; flex:none }
@@ -284,8 +284,8 @@ path.land{ fill:var(--land); stroke:var(--coast); stroke-width:1 }
 .tl::before{ content:""; position:absolute; left:calc(3.5rem + 13px); top:10px; bottom:10px; width:2px; border-radius:1px; background:var(--rule) }
 .row{ position:relative; display:grid; grid-template-columns:3.5rem 28px minmax(0,1fr); column-gap:0; padding-block:7px }
 .row .tm{ padding-top:2px; text-align:right; padding-right:2px; font-size:15px; font-weight:700; line-height:1.35; font-variant-numeric:tabular-nums }
-.row .tm small{ display:block; font-size:12.5px; font-weight:500; color:var(--ink-3) }
-.row .tm .lab{ font-size:13px; font-weight:700; color:var(--ink-2) }
+.row .tm small{ display:block; font-size:13.5px; font-weight:500; color:var(--ink-2) }
+.row .tm .lab{ font-size:14px; font-weight:700; color:var(--ink-2) }
 .row .dot{ position:relative }
 .row .dot::after{ content:""; position:absolute; left:50%; top:8px; width:12px; height:12px; margin-left:-6px; border-radius:50%; background:var(--ground); border:2px solid var(--ink-3) }
 .row.fix .dot::after{ background:var(--ink); border-color:var(--ink) }
@@ -296,16 +296,16 @@ path.land{ fill:var(--land); stroke:var(--coast); stroke-width:1 }
 @media (hover:hover) and (pointer:fine){ .ev-btn:hover{ background:var(--raised) } }
 .ttl{ display:flex; align-items:flex-start; gap:6px; font-size:16px; font-weight:700; line-height:1.4 }
 .ttl .pinmark{ margin-top:2px; color:var(--ink-3); width:16px; height:16px }
-.det{ display:block; margin-top:2px; font-size:14px; color:var(--ink-2) }
-.course{ margin-top:6px; display:flex; flex-wrap:wrap; gap:2px 6px; font-size:13.5px; color:var(--ink-2) }
+.det{ display:block; margin-top:2px; font-size:15px; color:var(--ink-2) }
+.course{ margin-top:6px; display:flex; flex-wrap:wrap; gap:2px 6px; font-size:14.5px; color:var(--ink-2) }
 .course li + li::before{ content:"→ "; color:var(--ink-3) }
-.pack{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:8px; font-size:13px }
+.pack{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:8px; font-size:14px }
 .pack .l{ font-weight:600; color:var(--ink-2) }
 .pack .p{ padding:2px 8px; border-radius:var(--r-ctl); background:var(--surface); border:1px solid var(--border) }
-.flag{ display:inline-flex; align-items:center; gap:4px; margin-top:6px; padding:2px 8px; border-radius:var(--r-ctl); font-size:12.5px; font-weight:700; color:var(--warn-ink); background:var(--warn-bg); white-space:nowrap; flex:none }
+.flag{ display:inline-flex; align-items:center; gap:4px; margin-top:6px; padding:2px 8px; border-radius:var(--r-ctl); font-size:13.5px; font-weight:700; color:var(--warn-ink); background:var(--warn-bg); white-space:nowrap; flex:none }
 .flag .ico{ width:14px; height:14px }
 .links{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px }
-.now-tag{ display:inline-block; margin-bottom:4px; padding:1px 8px; border-radius:var(--r-ctl); background:var(--route); color:#fff; font-size:12px; font-weight:700 }
+.now-tag{ display:inline-block; margin-bottom:4px; padding:1px 8px; border-radius:var(--r-ctl); background:var(--route); color:#fff; font-size:13px; font-weight:700 }
 :root:not([data-theme="light"]) .now-tag{ color:var(--on-ink) }
 .row.now .dot::after{ background:var(--route); border-color:var(--route) }
 .row.now .dot::before, .nowline .dot::before{ content:""; position:absolute; left:50%; top:8px; width:12px; height:12px; margin-left:-6px; border-radius:50%; background:var(--route-tint); transform:scale(2) }
@@ -333,21 +333,21 @@ details > summary::-webkit-details-marker{ display:none }
 .sum{ display:grid; grid-template-columns:minmax(0,1fr); gap:5px; padding:11px 40px 11px 12px; min-height:44px; position:relative; line-height:1.4; border-radius:var(--r-card); transition:background-color var(--t-out) var(--ease) }
 .sum:active{ background:var(--active) }
 .sum-t b{ font-size:15.5px; font-weight:700 }
-.sum-m{ display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px; font-size:14px; color:var(--ink-2) }
+.sum-m{ display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px; font-size:14.5px; color:var(--ink-2) }
 .sum-m .mode{ margin-right:0; vertical-align:0 }
 .sum-m .flag{ margin-top:0 }
-.sum .dur{ font-size:14px; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap }
+.sum .dur{ font-size:14.5px; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap }
 .sum .chev{ position:absolute; right:12px; top:50%; width:18px; height:18px; margin-top:-9px; color:var(--ink-3); transition:transform var(--t-panel) var(--ease) }
 details[open] > .sum .chev{ transform:rotate(180deg) }
 /* 수단 표시: 앞의 짧은 선이 지도의 선과 같은 모양이에요 */
-.mode{ display:inline-flex; align-items:center; gap:6px; margin-right:8px; padding:0 8px 0 7px; min-height:24px; border-radius:var(--r-ctl); font-size:12.5px; font-weight:700; line-height:1.4; vertical-align:1px; white-space:nowrap; background:var(--raised); color:var(--ink) }
+.mode{ display:inline-flex; align-items:center; gap:6px; margin-right:8px; padding:0 8px 0 7px; min-height:26px; border-radius:var(--r-ctl); font-size:13.5px; font-weight:700; line-height:1.4; vertical-align:1px; white-space:nowrap; background:var(--raised); color:var(--ink) }
 .mode::before{ content:""; width:14px; height:0; border-top:3px solid var(--route); border-radius:2px }
 .mode.foot::before{ border-top-style:dotted; border-top-width:3.5px }
 .mode.transit::before{ border-top-style:dashed; border-top-width:2.5px; border-radius:0 }
 .mode.fly::before{ border-top-style:dashed; border-top-width:2px; border-radius:0 }
 .mode.past::before{ border-top-color:var(--past) }
-.nx{ display:inline-block; margin-left:6px; padding:0 7px; border-radius:var(--r-ctl); background:var(--route-tint); color:var(--route); font-size:12px; font-weight:700; line-height:1.6; vertical-align:1px; white-space:nowrap }
-.dist{ font-size:14px; color:var(--ink-3); font-variant-numeric:tabular-nums; white-space:nowrap }
+.nx{ display:inline-block; margin-left:6px; padding:0 7px; border-radius:var(--r-ctl); background:var(--route-tint); color:var(--route); font-size:13px; font-weight:700; line-height:1.6; vertical-align:1px; white-space:nowrap }
+.dist{ font-size:14.5px; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap }
 /* 일정마다 붙는 '구글 지도'는 테두리 없는 글자 버튼으로 가볍게 */
 .row.ev .links .btn-line{ border-color:transparent; background:transparent; color:var(--ink-2); padding:0 10px; margin-left:-10px; min-height:40px }
 .row.ev .links .btn-line:active{ background:var(--active) }
@@ -355,33 +355,33 @@ details[open] > .sum .chev{ transform:rotate(180deg) }
 .row.ev .links{ margin-top:4px }
 .more{ padding:0 12px 12px; display:grid; grid-template-columns:minmax(0,1fr); gap:6px; font-size:14.5px; color:var(--ink-2) }
 .more .alt b{ color:var(--ink); margin-right:6px }
-.more .meas{ font-size:13.5px; color:var(--ink-3); font-variant-numeric:tabular-nums }
-.cf-k{ display:inline-flex; align-items:center; gap:5px; margin-right:8px; font-size:13px; font-weight:700; color:var(--ink-2); vertical-align:1px }
+.more .meas{ font-size:14px; color:var(--ink-2); font-variant-numeric:tabular-nums }
+.cf-k{ display:inline-flex; align-items:center; gap:5px; margin-right:8px; font-size:14px; font-weight:700; color:var(--ink-2); vertical-align:1px }
 .cf-k svg{ width:16px; height:16px; fill:currentColor }
 .cf-list{ display:grid }
 .cf-item{ display:grid; gap:4px; padding:12px 0; border-top:1px solid var(--rule) }
 .cf-item:first-child{ border-top:0; padding-top:4px }
 .cf-item h4{ display:flex; flex-wrap:wrap; align-items:center; gap:4px 8px; font-size:16px; font-weight:700; color:var(--ink) }
-.cf-tag{ display:inline-block; padding:0 7px; border-radius:var(--r-ctl); font-size:12px; font-weight:600; line-height:1.7; color:var(--ink-2); background:var(--raised) }
-.cf-meta{ font-size:13.5px; color:var(--ink-2) }
+.cf-tag{ display:inline-block; padding:0 7px; border-radius:var(--r-ctl); font-size:13px; font-weight:600; line-height:1.7; color:var(--ink-2); background:var(--raised) }
+.cf-meta{ font-size:14.5px; color:var(--ink-2) }
 .cf-get b{ color:var(--ink); margin-right:6px }
 
 /* 탑승권 */
 .ticket{ border-radius:var(--r-card); background:var(--surface); border:1px solid var(--border); overflow:hidden }
-.tk-top{ display:flex; justify-content:space-between; align-items:baseline; gap:8px; padding:12px 16px 0; font-size:13px; color:var(--ink-2) }
+.tk-top{ display:flex; justify-content:space-between; align-items:baseline; gap:8px; padding:12px 16px 0; font-size:14px; color:var(--ink-2) }
 .tk-top b{ font-size:14px; font-weight:800; letter-spacing:.03em; color:var(--ink) }
 .tk-route{ display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:10px; padding:6px 16px 14px }
 .tk-pt{ display:grid }
 .tk-pt b{ font-size:26px; font-weight:800; letter-spacing:.02em; line-height:1.1; color:var(--ink) }
 .tk-pt .t{ font-size:15px; font-weight:700; font-variant-numeric:tabular-nums }
-.tk-pt .t em{ font-style:normal; font-size:12.5px; color:var(--ink-2); font-weight:600 }
-.tk-pt small{ font-size:12.5px; color:var(--ink-2) }
+.tk-pt .t em{ font-style:normal; font-size:13.5px; color:var(--ink-2); font-weight:600 }
+.tk-pt small{ font-size:13.5px; color:var(--ink-2) }
 .tk-pt.r{ text-align:right }
-.tk-mid{ display:grid; justify-items:center; gap:2px; font-size:12.5px; color:var(--ink-2); text-align:center; font-variant-numeric:tabular-nums }
+.tk-mid{ display:grid; justify-items:center; gap:2px; font-size:13.5px; color:var(--ink-2); text-align:center; font-variant-numeric:tabular-nums }
 .tk-mid .ln{ display:flex; align-items:center; gap:4px; width:100% }
 .tk-mid .ln::before, .tk-mid .ln::after{ content:""; flex:1; border-top:2px dashed var(--route) }
 .tk-mid svg{ width:18px; height:18px; fill:var(--ink); transform:rotate(90deg) }
-.tk-foot{ position:relative; padding:10px 16px 12px; background:var(--raised); font-size:13.5px; color:var(--ink-2) }
+.tk-foot{ position:relative; padding:10px 16px 12px; background:var(--raised); font-size:14.5px; color:var(--ink-2) }
 .tk-foot::before, .tk-foot::after{ content:""; position:absolute; top:-8px; width:16px; height:16px; border-radius:50%; background:var(--ground) }
 .tk-foot::before{ left:-8px } .tk-foot::after{ right:-8px }
 .row .tk-foot::before, .row .tk-foot::after, .pre .tk-foot::before, .pre .tk-foot::after{ background:var(--ground) }
@@ -393,6 +393,17 @@ details[open] > .sum .chev{ transform:rotate(180deg) }
 .notes li{ position:relative; padding-left:14px }
 .notes li::before{ content:""; position:absolute; left:2px; top:.7em; width:5px; height:5px; border-radius:50%; background:var(--ink-3) }
 
+/* 일정 맨 아래 전날·다음 날: 날짜 칸보다 크게 누르는 길 */
+.pager{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px; margin-top:26px }
+.pg{ display:flex; align-items:center; gap:6px; min-height:72px; padding:10px 10px; border:1px solid var(--border); border-radius:var(--r-card); background:var(--surface); text-align:left; transition:background-color var(--t-out) var(--ease) }
+.pg.next{ justify-content:flex-end; text-align:right }
+.pg span{ display:grid; gap:2px; min-width:0 }
+.pg small{ font-size:13.5px; font-weight:600; color:var(--ink-2); font-variant-numeric:tabular-nums }
+.pg b{ font-size:15px; font-weight:700; line-height:1.35; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden }
+.pg .chev{ flex:none; width:18px; height:18px; color:var(--ink-3) }
+.pg:active{ background:var(--active) }
+@media (hover:hover) and (pointer:fine){ .pg:hover{ background:var(--raised) } }
+
 /* 전체 여정 날짜 목록 */
 .trip-sub{ margin-top:6px; color:var(--ink-2); font-size:15px }
 .dlist{ margin-top:18px; border-radius:var(--r-card); background:var(--surface); border:1px solid var(--border); overflow:hidden }
@@ -402,10 +413,10 @@ details[open] > .sum .chev{ transform:rotate(180deg) }
 @media (hover:hover) and (pointer:fine){ .drow:hover{ background:var(--raised) } }
 .drow .d{ display:grid; padding-block:10px }
 .drow .d b{ font-size:16px; font-weight:800; font-variant-numeric:tabular-nums }
-.drow .d small{ font-size:12.5px; color:var(--ink-3) }
+.drow .d small{ font-size:13.5px; color:var(--ink-2) }
 .drow .t{ display:grid; min-width:0; padding-block:10px }
 .drow .t b{ font-size:15.5px; font-weight:700; line-height:1.4 }
-.drow .t small{ font-size:13px; color:var(--ink-2) }
+.drow .t small{ font-size:14px; color:var(--ink-2) }
 .drow .chev{ color:var(--ink-3) }
 .drow.past .d b, .drow.past .t b{ color:var(--ink-2) }
 .drow.today .d small{ color:var(--route); font-weight:700 }
@@ -422,9 +433,9 @@ details[open] > .sum .chev{ transform:rotate(180deg) }
 .lmain{ display:grid; grid-template-columns:5rem minmax(0,1fr); gap:12px; align-items:start; padding:13px 0 13px 16px; text-align:left; min-height:56px; border-radius:var(--r-card) }
 .lmain:active{ background:var(--active) }
 .lmain .when{ font-size:14px; font-weight:700; line-height:1.4; font-variant-numeric:tabular-nums }
-.lmain .when small{ display:block; font-size:12.5px; font-weight:500; color:var(--ink-3) }
+.lmain .when small{ display:block; font-size:13.5px; font-weight:500; color:var(--ink-2) }
 .lmain .what b{ display:block; font-size:15.5px; font-weight:700; line-height:1.4 }
-.lmain .what span{ display:block; font-size:13.5px; color:var(--ink-2) }
+.lmain .what span{ display:block; font-size:14.5px; color:var(--ink-2) }
 .lmain .what .flag{ display:inline-flex }
 .lrow .icon-btn{ color:var(--ink-2) }
 .guide-sec{ margin-top:30px }
@@ -441,7 +452,7 @@ details[open] > .sum .chev{ transform:rotate(180deg) }
 .g-card li::before{ content:""; position:absolute; left:2px; top:.72em; width:5px; height:5px; border-radius:50%; background:var(--ink-3) }
 .g-card strong{ font-weight:700 }
 .g-card .tel{ display:inline-flex; align-items:center; min-height:32px; font-variant-numeric:tabular-nums; font-weight:700; color:var(--ink); text-decoration:underline; text-decoration-thickness:1.5px; text-underline-offset:3px }
-.srcs{ margin-top:22px; font-size:13px; color:var(--ink-2) }
+.srcs{ margin-top:22px; font-size:13.5px; color:var(--ink-2) }
 .srcs b{ color:var(--ink) }
 .srcs ul{ display:grid; gap:4px; margin-top:6px }
 .srcs a{ color:var(--ink-2) }
@@ -455,7 +466,7 @@ details[open] > .sum .chev{ transform:rotate(180deg) }
 .ck b{ display:block; font-size:15.5px; font-weight:700 }
 .ck span span{ display:block; margin-top:2px; font-size:14px; color:var(--ink-2) }
 .ck.done b{ color:var(--ink-3); text-decoration:line-through }
-.fine{ margin-top:12px; font-size:13px; color:var(--ink-3) }
+.fine{ margin-top:12px; font-size:14px; color:var(--ink-2) }
 .inst{ margin-top:30px }
 .inst > h3{ font-size:19px; font-weight:700; letter-spacing:-.01em }
 .inst > p{ margin-top:6px; color:var(--ink-2); font-size:14.5px }
@@ -464,10 +475,31 @@ details[open] > .sum .chev{ transform:rotate(180deg) }
 .inst .g-card ol li{ padding-left:22px }
 .inst .g-card ol li::before{ counter-increment:st; content:counter(st); top:.1em; left:0; width:auto; height:auto; border-radius:0; background:none; font-size:13px; font-weight:800; color:var(--ink-2); font-variant-numeric:tabular-nums }
 .inst .share{ margin-top:12px }
+/* 오프라인 지도 받기 */
+.off{ margin-top:12px; display:grid; gap:12px; padding:14px 16px; border:1px solid var(--border); border-radius:var(--r-card); background:var(--surface) }
+.off-st{ font-size:15px; font-variant-numeric:tabular-nums }
+.off-st b{ display:inline-flex; align-items:center; gap:4px; margin-right:8px; font-weight:700 }
+.off .ck-bar{ margin-top:0 }
+.off .btn{ justify-self:start }
+.off .btn[disabled]{ opacity:.55; cursor:default }
+.off-err{ font-size:14px; font-weight:600; color:var(--warn-ink) }
+/* 출발 전 리허설 */
+#rehearse .list{ margin-top:12px }
+.rh{ display:grid; grid-template-columns:minmax(0,1fr) 20px; align-items:center; gap:12px; width:100%; min-height:60px; padding:10px 14px 10px 16px; text-align:left; transition:background-color var(--t-out) var(--ease) }
+.rh + .rh{ border-top:1px solid var(--rule) }
+.rh span{ display:grid; gap:2px; min-width:0 }
+.rh b{ font-size:15.5px; font-weight:700 }
+.rh small{ font-size:14px; color:var(--ink-2); font-variant-numeric:tabular-nums }
+.rh .chev{ color:var(--ink-3) }
+.rh:active{ background:var(--active) }
+@media (hover:hover) and (pointer:fine){ .rh:hover{ background:var(--raised) } }
+.sim-on{ margin-top:12px; display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; padding:12px 14px; border:1.5px solid var(--ink); border-radius:var(--r-card); background:var(--surface) }
+.sim-on p{ flex:1 1 180px; font-size:15px; font-variant-numeric:tabular-nums }
+.sim-on b{ display:block; font-size:14px; color:var(--ink-2) }
 
 /* 아래 탭: 불투명한 바탕에 위쪽 선 하나 */
 .tabs{ position:fixed; left:0; right:0; bottom:0; z-index:45; display:grid; grid-template-columns:repeat(4,1fr); height:calc(var(--tabs-h) + var(--safe-b)); padding:0 max(6px, var(--safe-r)) var(--safe-b) max(6px, var(--safe-l)); background:var(--surface); border-top:1px solid var(--border) }
-.tab{ position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; font-size:12px; font-weight:600; color:var(--ink-3) }
+.tab{ position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; font-size:12.5px; font-weight:600; color:var(--ink-3) }
 .tab .ico{ width:22px; height:22px }
 .tab[aria-selected="true"]{ color:var(--ink); font-weight:700 }
 .tab[aria-selected="true"]::before{ content:""; position:absolute; top:-1px; left:30%; right:30%; height:2px; border-radius:0 0 2px 2px; background:var(--ink) }
@@ -508,7 +540,9 @@ details[open] > .sum .chev{ transform:rotate(180deg) }
   .app[data-view="plan"] .sheet{ margin-top:-12px; padding-top:26px; border-top:1px solid var(--border); border-radius:12px 12px 0 0; background:var(--ground) }
   .app[data-view="plan"] .sheet::before{ content:""; position:absolute; top:7px; left:50%; width:36px; height:4px; margin-left:-18px; border-radius:2px; background:var(--control) }
   .mapwrap .leaflet-bottom{ bottom:12px }
-  .stepper, .size-btn{ bottom:34px }
+  .stepper{ bottom:34px }
+  /* 지도 버튼(내 위치·전체 보기·크게 보기)은 엄지가 닿는 오른쪽 아래에 */
+  .ctl{ top:auto; bottom:34px }
   /* 위에 붙은 날짜 띠와 아래 탭·다음 막대에 가리지 않게: 포커스 이동과 scrollIntoView가 이 여백을 지킨다 */
   html{ scroll-padding-top:calc(var(--top-h) + var(--days-h) + var(--safe-t) + 12px); scroll-padding-bottom:calc(var(--tabs-h) + var(--nb-space) + var(--safe-b) + 12px) }
   html:has(.app[data-view]:not([data-view="plan"])){ scroll-padding-top:calc(var(--top-h) + var(--safe-t) + 12px) }
@@ -516,7 +550,8 @@ details[open] > .sum .chev{ transform:rotate(180deg) }
 @media (max-width: 359.98px){
   .brand h1{ font-size:17px }
   .day-chip .d{ font-size:15px }
-  .lane .seg{ font-size:10.5px; padding:0 1px }
+  .day-chip .w{ font-size:11.5px }
+  .lane .seg{ font-size:11px; padding:0 1px }
 }
 @media (prefers-reduced-motion: reduce){
   *, *::before, *::after{ transition-duration:0ms !important; animation:none !important }

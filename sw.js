@@ -4,8 +4,10 @@
    - 준비 탭의 '오프라인용으로 받기'로 받은 지도는 따로(map-pre-v1) 두고 지우지 않아요. 받는 일은 화면 쪽에서 하고,
      그때 붙는 ?ofmpre=1 요청은 여기서 저장하지 않고 그대로 넘겨요(같은 조각을 두 번 저장하지 않게).
    - 지도 글자(fonts)와 아이콘 그림(sprites)은 몇 개 안 되니 지우지 않는 곳에 둬요. 지도 조각에 밀려 지워지면 지명이 안 보여서예요.
-   - 지도 스타일과 타일 목록(TileJSON)은 인터넷이 되면 새로 받고, 안 되면 미리 받은 판을 먼저 써요(그 판의 조각 주소와 맞으니까). */
-const VER = 'v2-202611082306';
+   - 지도 스타일과 타일 목록(TileJSON)은 인터넷이 되면 새로 받고, 안 되면 미리 받은 판을 먼저 써요(그 판의 조각 주소와 맞으니까).
+   - 화면 파일은 새 판을 먼저 받되, 2.5초 안에 답이 없고 저장본이 있으면 저장본을 줘요(연결은 됐는데 데이터가 안 오는 곳).
+     받던 것은 끝까지 받아 저장해요. 한 번 느렸으면 10초 동안은 나머지 화면 파일도 저장본 먼저(새 판과 옛 판이 섞이지 않게). */
+const VER = 'v2-202611101022';
 const SHELL = 'shell-' + VER, MAP = 'map-v1', PRE = 'map-pre-v1', STILL = 'map-still-v1', FONTS = 'fonts-v1';
 const FILES = ['./', 'index.html', 'css/app.css', 'vendor/leaflet.css', 'vendor/leaflet.js', 'vendor/maplibre-gl.css', 'vendor/maplibre-gl.js', 'vendor/leaflet-maplibre-gl.js',
   'js/coast.js',
@@ -43,6 +45,27 @@ async function networkFirst(req, name, preFirst) {
     throw err;
   }
 }
+const SLOW_MS = 2500, SLOW_HOLD = 10000;
+let slowUntil = 0;
+function shell(e) {
+  const req = e.request, cP = caches.open(SHELL);
+  // 화면 열기(?sim= 같은 주소 뒤쪽이 달라도)는 모두 한 칸('./')에 저장하고 꺼낸다. 칸이 늘거나 옛 칸이 나오지 않게
+  const key = req.mode === 'navigate' ? self.registration.scope : req;
+  let saving = Promise.resolve();
+  const net = fetch(req).then((res) => {
+    if (res.ok) { const copy = res.clone(); saving = cP.then((c) => c.put(key, copy)); }
+    return res;
+  });
+  e.waitUntil(net.then(() => saving, () => {}));   // 저장본을 먼저 줬어도 받던 것은 끝까지 받아 저장
+  return cP.then(async (c) => {
+    const hit = await c.match(key, { ignoreSearch: true }) || (req.mode === 'navigate' ? await c.match('index.html') : null);
+    if (!hit) return net;
+    if (Date.now() < slowUntil) return hit;
+    let timer;
+    const slow = new Promise((r) => { timer = setTimeout(() => { slowUntil = Date.now() + SLOW_HOLD; r(hit); }, SLOW_MS); });
+    try { return await Promise.race([net, slow]); } catch (err) { return hit; } finally { clearTimeout(timer); }
+  });
+}
 
 self.addEventListener('fetch', (e) => {
   const req = e.request;
@@ -58,5 +81,5 @@ self.addEventListener('fetch', (e) => {
   }
   if (u.hostname === 'tile.openstreetmap.org') { e.respondWith(cacheFirst(req, MAP, 900)); return; }
   if (u.hostname === 'cdn.jsdelivr.net' || u.hostname === 'fonts.googleapis.com' || u.hostname === 'fonts.gstatic.com') { e.respondWith(cacheFirst(req, FONTS, 300)); return; }
-  if (u.origin === self.location.origin) e.respondWith(networkFirst(req, SHELL, false));
+  if (u.origin === self.location.origin) e.respondWith(shell(e));
 });

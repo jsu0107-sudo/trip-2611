@@ -7,7 +7,7 @@
    - 지도 스타일과 타일 목록(TileJSON)은 인터넷이 되면 새로 받고, 안 되면 미리 받은 판을 먼저 써요(그 판의 조각 주소와 맞으니까).
    - 화면 파일은 새 판을 먼저 받되, 2.5초 안에 답이 없고 저장본이 있으면 저장본을 줘요(연결은 됐는데 데이터가 안 오는 곳).
      받던 것은 끝까지 받아 저장해요. 한 번 느렸으면 10초 동안은 나머지 화면 파일도 저장본 먼저(새 판과 옛 판이 섞이지 않게). */
-const VER = 'v2-202611101022';
+const VER = 'v2-202611110733';
 const SHELL = 'shell-' + VER, MAP = 'map-v1', PRE = 'map-pre-v1', STILL = 'map-still-v1', FONTS = 'fonts-v1';
 const FILES = ['./', 'index.html', 'css/app.css', 'vendor/leaflet.css', 'vendor/leaflet.js', 'vendor/maplibre-gl.css', 'vendor/maplibre-gl.js', 'vendor/leaflet-maplibre-gl.js',
   'js/coast.js',
